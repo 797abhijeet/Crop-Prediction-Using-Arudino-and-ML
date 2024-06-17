@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction{% endblock title %}
+
+{% block body %}
+
+<section class="text-gray-600 body-font -my-9">
+    <div class="container px-5 py-24 mx-auto">
+        <div class = "flex flex-col text-center w-full mb-12"> 
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-indigo-500 ">Know Your Crop</h1>
+            <br><b >
+
+                {% if output %}
+                  <h2 class = "text-success"> Predicted Crop is : {{ output }} </h2>
+                {% endif %}
+              </b>
+        </div>
+        <form class="text-center flex-col" method="post" action="{% url 'prediction' %}">
+            {% csrf_token %}
+            <div class="flex flex-col mx-auto px-8 space-y-4 items-center">
+                <div class="flex items-center">
+                    <label for="Temperature" class="w-32 text-left text-sm text-gray-600 font-medium">Temperature:</label>
+                    <input type="text" id="Temperature" name="Temperature" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Soil Temperature" required />
+                </div>
+        
+                <div class="flex items-center">
+                    <label for="Humidity" class="w-32 text-left text-sm text-gray-600 font-medium">Humidity:</label>
+                    <input type="text" id="Humidity" name="Humidity" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Soil Humidity" required />
+                </div>
+        
+                <div class="flex items-center">
+                    <label for="SoilMoisture" class="w-32 text-left text-sm text-gray-600 font-medium">Moisture:</label>
+                    <input type="text" id="SoilMoisture" name="SoilMoisture" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-transparent focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" placeholder="Soil Moisture" required />
+                </div>
+        
+                <div class="text-center my-4">
+                    <button type="submit" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Predict</button>
+                </div>
+            </div>
+        </form>
+        
+        
+    </div>
+
+</section>
+
+{% endblock body %}
+
+
+
